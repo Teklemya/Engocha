@@ -1,6 +1,35 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const RefreshmentsMenu = () => {
+      const [isVisible, setIsVisible] = useState(false);
+          const sectionRef = useRef(null);
+        
+          useEffect(() => {
+            const observer = new IntersectionObserver(
+              ([entry]) => {
+                if (entry.isIntersecting) {
+                  setIsVisible(true);
+                  // Disconnect the observer after the section becomes visible
+                  observer.unobserve(entry.target);
+                }
+              },
+              {
+                // Trigger when at least 10% of the section is visible
+                threshold: 0.1,
+              }
+            );
+        
+            if (sectionRef.current) {
+              observer.observe(sectionRef.current);
+            }
+        
+            // Cleanup the observer on component unmount
+            return () => {
+              if (sectionRef.current) {
+                observer.unobserve(sectionRef.current);
+              }
+            };
+          }, []);
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   const menuCategories = {
@@ -66,6 +95,12 @@ const RefreshmentsMenu = () => {
             Delicious beverages and snacks to keep you refreshed
           </p>
         </div>
+
+        <div ref={sectionRef} className={`container mx-auto px-4 py-12 transition-all duration-1000 ease-out 
+          ${isVisible 
+            ? 'opacity-100 translate-y-0' 
+            : 'opacity-0 translate-y-20'
+          }`}> 
 
         {Object.keys(menuCategories).map((category) => (
           <div key={category} className="mb-12">
@@ -144,6 +179,7 @@ const RefreshmentsMenu = () => {
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 };
