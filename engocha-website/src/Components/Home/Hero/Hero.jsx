@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import './Hero.css';
-import Injera from '../../assets/injera.jpg';
+import Injera from '../../../assets/injera.jpg';
 import { Link } from 'react-router-dom';
 
 const Hero = () => {
@@ -90,7 +90,7 @@ const Hero = () => {
               View Menu
             </Link>
             <Link
-              to="/contact"
+              to="/order"
               className="px-6 py-3 border-2 border-white hover:bg-white hover:text-black transition-colors duration-300 rounded-lg text-white"
             >
               Book Catering

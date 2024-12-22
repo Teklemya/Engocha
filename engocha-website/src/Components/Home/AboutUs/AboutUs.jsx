@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import Teff from "../../assets/Teff.jpg";
+import Teff from "../../../assets/Teff.jpg";
 
 const AboutUs = () => {
   const [isVisible, setIsVisible] = useState(false);
