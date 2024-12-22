@@ -1,10 +1,40 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import meatball from "../../assets/meatBalls.jpeg"
 import sambusa from "../../assets/sambus.jpeg"
 import SpringRoll from "../../assets/spring_rolls.jpeg"
 import canpes from "../../assets/canapes.jpeg"
 import pizza from "../../assets/pizza.jpeg"
 const CocktailMenu = () => {
+    const [isVisible, setIsVisible] = useState(false);
+        const sectionRef = useRef(null);
+      
+        useEffect(() => {
+          const observer = new IntersectionObserver(
+            ([entry]) => {
+              if (entry.isIntersecting) {
+                setIsVisible(true);
+                // Disconnect the observer after the section becomes visible
+                observer.unobserve(entry.target);
+              }
+            },
+            {
+              // Trigger when at least 10% of the section is visible
+              threshold: 0.1,
+            }
+          );
+      
+          if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+          }
+      
+          // Cleanup the observer on component unmount
+          return () => {
+            if (sectionRef.current) {
+              observer.unobserve(sectionRef.current);
+            }
+          };
+        }, []);
+      
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   const menuCategories = {
@@ -72,18 +102,6 @@ const CocktailMenu = () => {
     <div className="container mx-auto px-4 py-4">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-8">
-          {/* <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            className="mx-auto mb-4 text-primary-600 w-12 h-12"
-            viewBox="0 0 24 24" 
-            fill="none" 
-            stroke="currentColor"
-          >
-            <path d="M6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" />
-            <line x1="16" y1="2" x2="16" y2="6" />
-            <line x1="8" y1="2" x2="8" y2="6" />
-            <line x1="3" y1="10" x2="21" y2="10" />
-          </svg> */}
           <h2 className="text-3xl font-bold text-gray-800">
             Cocktail Event Appetizers
           </h2>
@@ -91,6 +109,11 @@ const CocktailMenu = () => {
             Delightful bites perfect for your cocktail and social events
           </p>
         </div>
+        <div ref={sectionRef} className={`container mx-auto px-4 py-12 transition-all duration-1000 ease-out 
+          ${isVisible 
+            ? 'opacity-100 translate-y-0' 
+            : 'opacity-0 translate-y-20'
+          }`}> 
 
         {Object.keys(menuCategories).map((category) => (
           <div key={category} className="mb-12">
@@ -170,6 +193,7 @@ const CocktailMenu = () => {
         ))}
       </div>
     </div>
+  </div>
   );
 };
 
