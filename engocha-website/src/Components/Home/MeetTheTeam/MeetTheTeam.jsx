@@ -1,7 +1,7 @@
 import { FaLinkedin, FaInstagram } from 'react-icons/fa';
-import Selam from '../../assets/Selam.jpg';
-import Tesfaye from '../../assets/tesfaye.jpeg';
-import Dawit from '../../assets/Thomas.jpeg';
+import Selam from '../../../assets/Selam.jpg';
+import Tesfaye from '../../../assets/tesfaye.jpeg';
+import Dawit from '../../../assets/Thomas.jpeg';
 const MeetTheTeam = () => {
   const teamMembers = [
     {
