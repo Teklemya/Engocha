@@ -2,15 +2,15 @@ import "./Clients.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import UNICEFLogo from "../../assets/UNICEF.png";
-import UNLogo from "../../assets/UN.png";
-import WVLogo from "../../assets/WorldVision.png";
-import JVMLogo from "../../assets/JVM.jpg";
-import AU from "../../assets/AU.jpeg";
-import EU from "../../assets/EU.jpeg";
-import Companssion from "../../assets/Companssion.png";
-import giz from "../../assets/Giz.jpeg";
-import iom from "../../assets/IOM.jpeg";
+// import UNICEFLogo from "../../../assets/UNICEF.png";
+import UNLogo from "../../../assets/UN.png";
+import WVLogo from "../../../assets/WorldVision.png";
+import JVMLogo from "../../../assets/JVM.jpg";
+import AU from "../../../assets/AU.jpeg";
+import EU from "../../../assets/EU.jpeg";
+import Companssion from "../../../assets/Companssion.png";
+import giz from "../../../assets/Giz.jpeg";
+import iom from "../../../assets/IOM.jpeg";
 
 const Clients = () => {
   const settings = {
@@ -34,9 +34,9 @@ const Clients = () => {
     >
       <h2 className="text-3xl font-bold text-center mb-6">Our Clients</h2>
       <Slider {...settings} className="max-w-7xl mx-auto">
-        <div>
+        {/* <div>
           <img src={UNICEFLogo} alt="UNICEF" className="w-40 h-40 object-contain mx-auto rounded-lg shadow-lg" />
-        </div>
+        </div> */}
         <div>
           <img src={UNLogo} alt="United Nations" className="w-40 h-40 object-contain mx-auto rounded-lg shadow-lg" />
         </div>
